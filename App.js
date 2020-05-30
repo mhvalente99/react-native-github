@@ -5,12 +5,14 @@ import { Text, View, SafeAreaView, StyleSheet, Image,
          TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import UserScreen from './screens/UserScreen';
+import FollowersScreen from './screens/FollowersScreen';
 
 const Stack = createStackNavigator();
 
 function HomeScreen() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("mhvalente99");
   const navigation = useNavigation();
 
   function handleNavigateToInfo() {
@@ -45,10 +47,7 @@ function HomeScreen() {
       </View>
       <TouchableOpacity 
         style={ styles.wrapperButton }
-        onPress={ () => { 
-            handleNavigateToInfo() 
-          }
-        }
+        onPress={ () => { handleNavigateToInfo() }}
       >
         <Text style={ styles.titleButton }>pesquisar</Text>
       </TouchableOpacity>
@@ -60,20 +59,23 @@ function HomeScreen() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+            headerShown : false
+          }
+        }
+      >
         <Stack.Screen 
           name="Home" 
           component={ HomeScreen }
-          options={{
-            headerShown: false
-          }}
         />
         <Stack.Screen
           name="User"
           component={ UserScreen }
-          options={{
-            headerShown: false
-          }}
+        />
+        <Stack.Screen
+          name="Followers"
+          component={ FollowersScreen }
         />
       </Stack.Navigator>
     </NavigationContainer>
