@@ -45,10 +45,10 @@ function HomeScreen() {
           autoCorrect={false}
         />
       </View>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={ styles.wrapperButton }
         onPress={ () => { handleNavigateToInfo() }}
-      >
+      > 
         <Text style={ styles.titleButton }>pesquisar</Text>
       </TouchableOpacity>
       </KeyboardAvoidingView>

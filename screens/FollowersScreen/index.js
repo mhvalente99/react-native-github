@@ -1,22 +1,29 @@
 import React from 'react';
-import { SafeAreaView, Text, View, Image } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import styles from './styles';
+
+import Follower from '../../components/Follower'
+
+const followers = [
+  {
+    id: 1
+  },
+  {
+    id: 2
+  },
+  {
+    id: 3
+  },
+]
 
 function FollowersScreen(){
   return(
     <SafeAreaView style={ styles.container }>
-      <View style={ styles.wrappUser }>
-        <View style={ styles.wrappAvatar }>
-          <Image 
-            style={ styles.avatar }
-            source={{ uri: 'https://avatars3.githubusercontent.com/u/32014139?v=4' }}
-          />
-        </View>
-        <View>
-          <Text style={ styles.name }>Matheus Henrique</Text>
-          <Text style={ styles.username }>@mhvalente99</Text>
-        </View>
-      </View>
+      <FlatList 
+        data={followers}
+        renderItem={ ({item}) =>  (<Follower />)}
+        keyExtractor={item => item.id}
+      />
     </SafeAreaView>
   )
 }
