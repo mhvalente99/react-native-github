@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, FlatList } from 'react-native';
 import styles from './styles';
 
+import api from '../../services/api'
 import Follower from '../../components/Follower'
 
-const followers = [
-  {
-    id: 1
-  },
-  {
-    id: 2
-  },
-  {
-    id: 3
-  },
-]
-
 function FollowersScreen(){
+  const [followers, setFollowers] = useState([]);
+
+  useEffect(()=> {
+    api.get('/mhvalente99/followers').then( (response) => {
+      setFollowers(response.data)
+    })
+  }, []);
+
   return(
     <SafeAreaView style={ styles.container }>
       <FlatList 
         data={followers}
-        renderItem={ ({item}) =>  (<Follower />)}
+        renderItem={ ({item}) =>  (<Follower avatar={item.avatar_url} name={item.login}/>)}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
